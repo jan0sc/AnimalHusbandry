@@ -898,6 +898,7 @@ SPR d
 00111100
 00100100
 NAME cat1
+DLG cat
 POS 1 5,11
 
 SPR j
@@ -910,6 +911,7 @@ SPR j
 01111000
 01001000
 NAME sheep1
+DLG sheep
 POS 2 10,2
 
 SPR k
@@ -922,6 +924,7 @@ SPR k
 01111000
 01001000
 NAME sheep2
+DLG sheep
 POS 2 5,12
 
 SPR l
@@ -934,6 +937,7 @@ SPR l
 01111000
 01001000
 NAME sheep3
+DLG sheep
 POS 2 13,10
 
 SPR m
@@ -946,6 +950,7 @@ SPR m
 01111000
 01001000
 NAME sheep4
+DLG sheep
 POS 0 10,8
 
 SPR n
@@ -958,6 +963,7 @@ SPR n
 00011100
 00001000
 NAME chicken1
+DLG chicken
 
 SPR o
 00000000
@@ -969,6 +975,7 @@ SPR o
 01111100
 01000100
 NAME dog1
+DLG dog
 POS 1 12,6
 
 SPR p
@@ -981,6 +988,7 @@ SPR p
 00011100
 00001000
 NAME chicken2
+DLG chicken
 POS 1 4,5
 
 SPR q
@@ -993,6 +1001,7 @@ SPR q
 10000010
 10000010
 NAME cow1
+DLG cow
 POS 0 6,8
 
 SPR r
@@ -1005,6 +1014,7 @@ SPR r
 01111000
 01001000
 NAME sheep5
+DLG sheep
 POS 3 12,11
 
 SPR s
@@ -1017,6 +1027,7 @@ SPR s
 11111100
 10001000
 NAME pig1
+DLG pig
 POS 0 9,7
 
 SPR t
@@ -1029,6 +1040,7 @@ SPR t
 00011100
 00001000
 NAME chicken3
+DLG chicken
 POS 4 13,11
 
 SPR u
@@ -1041,6 +1053,7 @@ SPR u
 00011100
 00001000
 NAME chicken4
+DLG chicken
 POS 4 7,13
 
 SPR v
@@ -1053,6 +1066,7 @@ SPR v
 01111000
 01001000
 NAME sheep6
+DLG sheep
 POS 3 7,10
 
 SPR w
@@ -1065,6 +1079,7 @@ SPR w
 01111000
 01001000
 NAME sheep7
+DLG sheep
 POS 4 3,2
 
 ITM 2
@@ -1101,13 +1116,32 @@ VAR open_2
 VAR open_3
 0
 
+DLG sheep
+(soundeffectNow "sheep1")
+
+DLG cow
+(soundeffectNow "cow1")
+
+DLG pig
+(soundeffectNow "pig3")
+
+DLG dog
+(soundeffectNow "dog2")
+
+DLG cat
+(soundeffectNow "cat1")
+
+DLG chicken
+(soundeffectNow "chicken1")
+
+
 DLG 0_complete_true
 """
 {
   - open_0 == 1 ?
   - else ?
   	(js "room[0].tilemap[6][15] = null")
-  	(soundeffectNow "pig3")
+    (js "startSpriteDialog(lastTouch)")
 		{open_0 = 1}
 }
 """
@@ -1128,7 +1162,7 @@ DLG 1_complete_true
   - open_1 == 1 ?
   - else ?
   	(js "room[1].tilemap[6][15] = null")
-		(soundeffectNow "dog2")
+		(js "startSpriteDialog(lastTouch)")
 		{open_1 = 1}
 }
 """
@@ -1149,7 +1183,7 @@ DLG 2_complete_true
   - open_2 == 1 ?
   - else ?
   	(js "room[1].tilemap[15][10] = null")
-		(soundeffectNow "sheep1")
+		(js "startSpriteDialog(lastTouch)")
 		{open_2 = 1}
 }
 """
@@ -1160,7 +1194,7 @@ DLG 3_complete_true
   - open_3 == 1 ?
   - else ?
   	(js "room[1].tilemap[0][8] = null")
-		(soundeffectNow "sheep2")
+		(js "startSpriteDialog(lastTouch)")
 		{open_3 = 1}
 }
 """
@@ -9445,6 +9479,9 @@ CHAR 255
 <audio id="sheep2" src="sheep2.mp3" volume="0.5"></audio>
 <audio id="dog2" src="dog2.mp3" volume="0.5"></audio>
 <audio id="pig3" src="pig3.mp3" volume="0.5"></audio>
+<audio id="chicken1" src="chicken1.mp3" volume="0.5"></audio>
+<audio id="cat1" src="cat1.mp3" volume="0.5"></audio>
+<audio id="cow1" src="cow1.mp3" volume="0.5"></audio>
 <audio id="debussy2" src="debussy2.mp3" loop></audio>
 <script src="bitsymuse.js"></script>
 

@@ -537,7 +537,7 @@ function setSpriteData(id, frame, newData) {
 
 
 
-
+bitsy.lastTouch = null;
 
 before("movePlayer", function(direction) {
 
@@ -562,8 +562,15 @@ before("movePlayer", function(direction) {
 
 	if (spriteId && hackOptions.playerPushesSprite(bitsy.sprite[spriteId])) {
 		var success = pushSprite(bitsy.sprite[spriteId],direction);
-		if (!success) { updateImage(bitsy.sprite[spriteId]); } // to flip the sprite even if it doesn't move
+		if (!success) {
+			// flip the sprite even if it doesn't move
+			updateImage(bitsy.sprite[spriteId]);
+			// call the sprite's dialog
+			startSpriteDialog(spriteId)
+		}
 	}
+
+	bitsy.lastTouch = spriteId;
 
 });
 
